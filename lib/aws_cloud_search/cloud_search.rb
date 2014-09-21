@@ -30,7 +30,7 @@ module AWSCloudSearch
     # @param [SearchRequest] search_req
     # @return
     def search(search_req)
-      raise ArgumentError.new("Invalid Type: search_request must be of type SearchRequest") unless search_req.is_a? SearchRequest
+      raise ArgumentError.new("Invalid Type: search_request must respond to #to_hash") unless search_req.respond_to?(:to_hash)
 
       resp = @search_conn.get do |req|
         req.url "/#{AWSCloudSearch::API_VERSION}/search", search_req.to_hash
