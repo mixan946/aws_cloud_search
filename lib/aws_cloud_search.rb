@@ -5,6 +5,7 @@ require "aws_cloud_search/document_batch"
 require "aws_cloud_search/document_batcher"
 require "aws_cloud_search/exceptions"
 require "aws_cloud_search/search_response"
+require "aws_cloud_search/suggest_response"
 require "aws_cloud_search/search_request"
 require "aws_cloud_search/version"
 

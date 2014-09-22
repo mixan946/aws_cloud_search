@@ -63,6 +63,15 @@ module AWSCloudSearch
       search_response
     end
 
+    def suggest(suggest_query)
+      raise ArgumentError.new("Invalid Type: search_request must respond to #to_hash") unless suggest_query.respond_to?(:to_hash)
+
+      resp = @search_conn.get do |req|
+        req.url "/#{AWSCloudSearch::API_VERSION}/suggest", suggest_query.to_hash
+      end
+      SuggestResponse.new(resp.body)
+    end
+
     # Build a DocumentBatcher linked to this CloudSearch domain
     # @return [DocumentBatcher]
     def new_batcher
