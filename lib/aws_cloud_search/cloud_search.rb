@@ -4,9 +4,9 @@ require "aws_cloud_search"
 module AWSCloudSearch
   class CloudSearch
 
-    def initialize(domain, region="us-east-1")
-      @doc_conn = AWSCloudSearch::create_connection( AWSCloudSearch::document_url(domain, region) )
-      @search_conn = AWSCloudSearch::create_connection( AWSCloudSearch::search_url(domain, region) )
+    def initialize(domain)
+      @doc_conn = AWSCloudSearch::create_connection( domain.doc_endpoint )
+      @search_conn = AWSCloudSearch::create_connection( domain.search_endpoint )
     end
 
     # Sends a batch of document updates and deletes by invoking the CloudSearch documents/batch API
